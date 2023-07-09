@@ -69,4 +69,16 @@ mod tests {
         let v = vec![2, 4, 3, 5, 6, 7, 1];
         assert_eq!(vec![1, 2, 3, 4, 5, 6, 7], merge_sort(v));
     }
+
+    #[test]
+    fn already_sorted() {
+        let v = vec![1, 2, 3, 4, 5, 6, 7, 8];
+        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], merge_sort(v));
+    }
+
+    #[test]
+    fn worst_case() {
+        let v = vec![8, 7, 6, 5, 4, 3, 2, 1];
+        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], merge_sort(v));
+    }
 }
