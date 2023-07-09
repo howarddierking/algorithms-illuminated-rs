@@ -19,8 +19,8 @@ fn main() {
 /// recursive application, but you combine the results back together in a way that keeps you from
 /// having to go back through every other value
 fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
-    if input.len() < 2{
-        return input
+    if input.len() < 2 {
+        return input;
     }
     let split = input.split_off(input.len().div(2));
 
@@ -59,14 +59,14 @@ mod tests {
     use super::*;
 
     #[test]
-    fn sort_8_ints () {
-        let v = vec![2,4,3,5,8,6,7,1];
-        assert_eq!(vec![1,2,3,4,5,6,7,8], merge_sort(v));
+    fn sort_8_ints() {
+        let v = vec![2, 4, 3, 5, 8, 6, 7, 1];
+        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], merge_sort(v));
     }
 
     #[test]
-    fn sort_7_ints(){
-        let v = vec![2,4,3,5,6,7,1];
-        assert_eq!(vec![1,2,3,4,5,6,7], merge_sort(v));
+    fn sort_7_ints() {
+        let v = vec![2, 4, 3, 5, 6, 7, 1];
+        assert_eq!(vec![1, 2, 3, 4, 5, 6, 7], merge_sort(v));
     }
 }
