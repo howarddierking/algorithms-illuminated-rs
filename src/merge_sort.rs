@@ -1,13 +1,3 @@
-// skipping Karatsub multiplication because I'm struggling with the concept and want
-// to make forward progress
-
-// TODO: figure out the right workspace setup so that I can have each problem as its own bin
-//  but in the same project
-
-fn main() {
-    println!("Hello, world!");
-}
-
 /// merge_sort
 /// * classic divide and conquer approach - break problem into sub-problems, solve recursively,
 /// and then combine the solutions
@@ -16,7 +6,7 @@ fn main() {
 /// of the algorithm. It seems like you still have to effectively process the entire vector through
 /// recursive application, but you combine the results back together in a way that keeps you from
 /// having to go back through every other value
-fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
+pub fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
     if input.len() < 2 {
         return input;
     }
