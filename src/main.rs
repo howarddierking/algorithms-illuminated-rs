@@ -4,8 +4,6 @@
 // TODO: figure out the right workspace setup so that I can have each problem as its own bin
 //  but in the same project
 
-use std::ops::Div;
-
 fn main() {
     println!("Hello, world!");
 }
@@ -22,7 +20,8 @@ fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
     if input.len() < 2 {
         return input;
     }
-    let split = input.split_off(input.len().div(2));
+
+    let split = input.split_off(input.len() / 2);
 
     // recurse with both sides
     let a = merge_sort(input);
