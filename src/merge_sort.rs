@@ -22,25 +22,25 @@ pub fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
 
 fn merge(v1: Vec<i32>, v2: Vec<i32>) -> Vec<i32> {
     let mut ret = Vec::new();
-    let mut v1_index = 0;
-    let mut v2_index = 0;
 
-    // to handle odd-length inputs, we need to iterate for the total number of output slots
-    // TODO: this is hideous - figure out the best way to clean up
-    for _ in 0..v1.len() + v2.len() {
-        if v1_index >= v1.len() {
-            ret.push(v2[v2_index]);
-            v2_index += 1;
-        } else if v2_index >= v2.len() || v1[v1_index] < v2[v2_index] {
-            ret.push(v1[v1_index]);
-            v1_index += 1;
-        } else {
-            ret.push(v2[v2_index]);
-            v2_index += 1;
+    let mut v1 = v1.into_iter().peekable();
+    let mut v2 = v2.into_iter().peekable();
+
+    loop {
+        // Inspect the next element of each list without modifying the iterator
+        match (v1.peek(), v2.peek()) {
+            // a < b, so push a while moving to the next element in v1
+            (Some(a), Some(b)) if a < b => ret.push(v1.next().unwrap()),
+            // b < a, so push b while moving to the next element in v2
+            (Some(a), Some(b)) if b <= a => ret.push(v2.next().unwrap()),
+            // v2 is empty, so push the last element(s) of v1
+            (Some(_), None) => ret.push(v1.next().unwrap()),
+            // v1 is empty, so push the last element(s) of v2
+            (None, Some(_)) => ret.push(v2.next().unwrap()),
+            // both lists are empty, so return
+            _ => return ret,
         }
     }
-
-    ret
 }
 
 #[cfg(test)]
