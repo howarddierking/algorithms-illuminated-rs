@@ -41,16 +41,13 @@ fn merge(v1: Vec<i32>, v2: Vec<i32>) -> Vec<i32> {
     for _ in 0..v1.len() + v2.len() {
         if v1_index >= v1.len() {
             ret.push(v2[v2_index]);
-            v2_index = v2_index + 1;
-        } else if v2_index >= v2.len() {
+            v2_index += 1;
+        } else if v2_index >= v2.len() || v1[v1_index] < v2[v2_index] {
             ret.push(v1[v1_index]);
-            v1_index = v1_index + 1;
-        } else if v1[v1_index] < v2[v2_index] {
-            ret.push(v1[v1_index]);
-            v1_index = v1_index + 1;
+            v1_index += 1;
         } else {
             ret.push(v2[v2_index]);
-            v2_index = v2_index + 1;
+            v2_index += 1;
         }
     }
 
