@@ -6,7 +6,7 @@
 /// of the algorithm. It seems like you still have to effectively process the entire vector through
 /// recursive application, but you combine the results back together in a way that keeps you from
 /// having to go back through every other value
-pub fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
+pub fn merge_sort<T: PartialOrd>(mut input: Vec<T>) -> Vec<T> {
     if input.len() < 2 {
         return input;
     }
@@ -20,7 +20,7 @@ pub fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
     merge(a, b)
 }
 
-fn merge(v1: Vec<i32>, v2: Vec<i32>) -> Vec<i32> {
+fn merge<T: PartialOrd>(v1: Vec<T>, v2: Vec<T>) -> Vec<T> {
     let mut ret = Vec::new();
 
     let mut v1 = v1.into_iter().peekable();
@@ -69,5 +69,11 @@ mod tests {
     fn worst_case() {
         let v = vec![8, 7, 6, 5, 4, 3, 2, 1];
         assert_eq!(vec![1, 2, 3, 4, 5, 6, 7, 8], merge_sort(v));
+    }
+
+    #[test]
+    fn sort_strings_lexicographically() {
+        let v = vec!["bromine", "darmstadtium", "aluminum", "cadmium"];
+        assert_eq!(vec!["aluminum", "bromine", "cadmium", "darmstadtium"], merge_sort(v));
     }
 }
