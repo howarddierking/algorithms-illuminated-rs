@@ -57,14 +57,19 @@ fn merge(v1: Vec<i32>, v2: Vec<i32>) -> Vec<i32> {
     ret
 }
 
-#[test]
-fn sort_8_ints () {
-    let v = vec![2,4,3,5,8,6,7,1];
-    assert_eq!(vec![1,2,3,4,5,6,7,8], merge_sort(v));
-}
+#[cfg(test)]
+mod tests {
+    use super::*;
 
-#[test]
-fn sort_7_ints(){
-    let v = vec![2,4,3,5,6,7,1];
-    assert_eq!(vec![1,2,3,4,5,6,7], merge_sort(v));
+    #[test]
+    fn sort_8_ints () {
+        let v = vec![2,4,3,5,8,6,7,1];
+        assert_eq!(vec![1,2,3,4,5,6,7,8], merge_sort(v));
+    }
+
+    #[test]
+    fn sort_7_ints(){
+        let v = vec![2,4,3,5,6,7,1];
+        assert_eq!(vec![1,2,3,4,5,6,7], merge_sort(v));
+    }
 }
