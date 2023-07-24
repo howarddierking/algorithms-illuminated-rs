@@ -1,6 +1,3 @@
-// skipping Karatsub multiplication because I'm struggling with the concept and want
-// to make forward progress
-
 /// merge_sort
 /// * classic divide and conquer approach - break problem into sub-problems, solve recursively,
 /// and then combine the solutions
@@ -13,7 +10,7 @@ pub fn merge_sort(mut input: Vec<i32>) -> Vec<i32> {
     if input.len() < 2 {
         return input;
     }
-    let split = input.split_off(input.len() /2);
+    let split = input.split_off(input.len() / 2);
 
     // recurse with both sides
     let a = merge_sort(input);
@@ -31,14 +28,14 @@ fn merge(v1: Vec<i32>, v2: Vec<i32>) -> Vec<i32> {
     // in order to handle odd length vectors, we simply just need to add match blocks where
     // one of the 2 vectors is none
     loop {
-        match(v1.peek(), v2.peek()){
+        match (v1.peek(), v2.peek()) {
             (Some(v1_item), Some(v2_item)) => {
                 if v1_item < v2_item {
                     ret.push(v1.next().unwrap())
                 } else {
                     ret.push(v2.next().unwrap())
                 }
-            },
+            }
             (Some(_), None) => ret.push(v1.next().unwrap()),
             (None, Some(_)) => ret.push(v2.next().unwrap()),
             _ => return ret,
